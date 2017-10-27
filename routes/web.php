@@ -12,7 +12,7 @@
 */
 
 
-Route::namespace('Auth')->group(function(){
+Route::group(['namespace'=>'Auth'],function(){
 
     Route::any('index','LoginController@index')->name('auth.login.index');
     Route::any('login','LoginController@login')->name('auth.login.login');

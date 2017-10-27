@@ -16,6 +16,11 @@
             });
         });
 
+        function form_submit()
+        {
+            var form = document.getElementById('login_form');
+            form.submit();
+        }
         function userlogin(){
             var username=$("#username").val();
             var password=$("#password").val();
@@ -96,17 +101,29 @@
     <div class="logo">实验日常教学管理中心</div>
 </header>
 <section class="body">
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="login-box">
         <h1>用户登录</h1>
         <div class="login-form">
+            <form id="login_form" method="post" action="{{ Route('auth.login.login') }}">
+                {{ csrf_field() }}
             <ul>
                 <li><span class="ui-icon ui-icon-user"></span><input type="text" id="username" class="ui-input" name="username" placeholder="用户名" /></li>
                 <li><span class="ui-icon ui-icon-psd"></span><input type="password" id="password" class="ui-input" name="password" placeholder="密码" /></li>
                 <li><span class="ui-icon ui-icon-vcode"></span><input type="text" id="verifycode" class="ui-input" name="verifycode" style="width: 130px" placeholder="验证码" /><img id="verify_img" alt="点击刷新" title="点击刷新" src="" width="110" height="100%"></li>
             </ul>
             <div class="ui-form-btn">
-                <a href="#" class="login-btn" onClick="userlogin();">登录</a>
+                <a href="#" class="login-btn" onClick="form_submit();">登录</a>
             </div>
+            </form>
         </div>
     </div>
 </section>

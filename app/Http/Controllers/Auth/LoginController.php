@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\LoginPost;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -36,14 +37,9 @@ class LoginController extends Controller
         return view('Auth/index');
     }
 
-    public function login(Request $request)
+    public function login(LoginPost $request)
     {
-           Validator::make($request->all(),
-            [
-                'username'=>'required|string|min:5|max:20',
-                'password'=>'required|string|min:5',
-                // 'veritycode'=>'required|string'
-            ])->validate();
+
     }
 
 }
